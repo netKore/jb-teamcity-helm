@@ -1,0 +1,79 @@
+image:
+  repository: jetbrains/teamcity-server
+  tag: 2023.04
+  pullPolicy: IfNotPresent
+
+# Main сервер
+serverMain:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "2"
+      memory: "2Gi"
+  # Доп. env:
+  extraEnv:
+    - name: TEAMCITY_SERVER_MEM_OPTS
+      value: "-Xmx1g -Xms512m"
+    - name: TEAMCITY_SERVER_DB_HOST
+      value: "teamcity-db.example.com"
+    - name: TEAMCITY_SERVER_DB_NAME
+      value: "teamcity"
+    - name: TEAMCITY_SERVER_DB_USER
+      value: "teamcity"
+    - name: TEAMCITY_SERVER_DB_PASSWORD
+      value: "teamcityPassword"
+
+#REDO
+serverSecondary:
+  enabled: true
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "2"
+      memory: "2Gi"
+  extraEnv:
+    - name: TEAMCITY_SERVER_MEM_OPTS
+      value: "-Xmx1g -Xms512m"
+    - name: TEAMCITY_SERVER_OPTS
+      value: "-Dteamcity.server.role=secondary"
+    # При необходимости те же переменные для БД (или они читаются из config/datadir)
+
+# Сервис
+service:
+  type: ClusterIP
+  port: 8111
+
+# Ingress настройки
+ingress:
+  enabled: false
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: teamcity.example.com
+      path: /
+  tls: []
+
+# Persistence для общего data-dir (ReadWriteMany)
+persistence:
+  enabled: true
+  storageClass: ""
+  accessMode: ReadWriteMany
+  size: 10Gi
+
+# Настройки ServiceAccount / RBAC
+serviceAccount:
+  create: true
+  name: ""  # если пусто, helm сам сгенерирует
+  annotations: {}
+
+rbac:
+  create: true
+  # Можно указать нужный namespace в Role, если чарт устанавливается строго в один namespace
+  # или использовать ClusterRole - зависит от вашей политики.
+  clusterWide: false

@@ -1,0 +1,19 @@
+*********************************************************************************
+*** TeamCity HA chart installed!
+
+1) TeamCity server(s) are available via Service "{{ include "teamcity-ha.fullname" . }}-server", port {{ .Values.service.port }} in namespace "{{ .Release.Namespace }}".
+
+2) If Ingress is enabled, you can access it via:
+   http(s)://{{ (index .Values.ingress.hosts 0).host }}{{ (index .Values.ingress.hosts 0).path }}
+
+3) To enable dynamic agents (Kubernetes Cloud):
+   - Go to "Administration" -> "Agents" -> "Cloud" in TeamCity web UI
+   - Create a new "Kubernetes" cloud profile
+   - Use "In-cluster configuration" or provide a kubeconfig
+   - Specify the namespace ("{{ .Release.Namespace }}") and Pod template
+   - Save profile
+   => TeamCity will create/destroy agent Pods automatically!
+
+4) Remember to configure your external database if needed, as well as any secrets.
+TEST
+*********************************************************************************
