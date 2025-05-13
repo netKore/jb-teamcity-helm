@@ -12,11 +12,6 @@ spec:
   resources:
     requests:
       storage: {{ .Values.persistence.size }}
-#todo
-#  {{- if .Values.persistence.storageClass }}
-#  storageClassName: {{ .Values.persistence.storageClass | quote }}
-#  {{- end }}
-
 
 ---
 apiVersion: v1
@@ -24,7 +19,6 @@ kind: PersistentVolume
 metadata:
   name: {{ include "teamcity-ha.fullname" . }}-pv
 spec:
-  storageClassName: {{ .Values.persistence.storageClass | quote }}
   accessModes:
     - {{ .Values.persistence.accessMode }}
   capacity:
