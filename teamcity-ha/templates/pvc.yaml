@@ -8,12 +8,16 @@ metadata:
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}
+  volumeName: {{ include "teamcity-ha.fullname" . }}-pv
   resources:
     requests:
       storage: {{ .Values.persistence.size }}
-  {{- if .Values.persistence.storageClass }}
-  storageClassName: {{ .Values.persistence.storageClass | quote }}
-  {{- end }}
+#todo
+#  {{- if .Values.persistence.storageClass }}
+#  storageClassName: {{ .Values.persistence.storageClass | quote }}
+#  {{- end }}
+
+
 ---
 apiVersion: v1
 kind: PersistentVolume
