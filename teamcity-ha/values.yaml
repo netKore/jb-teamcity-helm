@@ -1,5 +1,5 @@
 image:
-  repository: jetbrains/teamcity-server
+  repository: jetbrains/teamcity-server:latest
   tag: 2023.04
   pullPolicy: IfNotPresent
 agentNamespace: wombat-agents
