@@ -1,4 +1,4 @@
-{{- if and .Values.ingress.enabled .Values.ingress.hosts }}
+{{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -20,7 +20,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ include "teamcity-ha.fullname" $. }}-server
+                name: {{ include "teamcity-ha.fullname" }}-server
                 port:
                   number: {{ $.Values.service.port }}
     {{- end }}
