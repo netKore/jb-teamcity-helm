@@ -1,6 +1,6 @@
 image:
-  repository: jetbrains/teamcity-server:latest
-  tag: 2023.04
+  repository: jetbrains/teamcity-server
+  tag: latest #TODO
   pullPolicy: IfNotPresent
 agentNamespace: wombat-agents
 # Main сервер
