@@ -18,13 +18,13 @@ serverMain:
     - name: TEAMCITY_SERVER_MEM_OPTS
       value: "-Xmx1g -Xms512m"
     - name: TEAMCITY_SERVER_DB_HOST
-      value: "teamcity-db.example.com"
+      value: "10.0.2.15"
     - name: TEAMCITY_SERVER_DB_NAME
-      value: "teamcity"
+      value: "postgres"
     - name: TEAMCITY_SERVER_DB_USER
-      value: "teamcity"
+      value: "postgres"
     - name: TEAMCITY_SERVER_DB_PASSWORD
-      value: "teamcityPassword"
+      value: "qazwsx"
 
 #REDO
 serverSecondary:
