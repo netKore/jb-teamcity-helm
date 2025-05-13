@@ -14,7 +14,7 @@ spec:
       storage: {{ .Values.persistence.size }}
 #todo
 #  {{- if .Values.persistence.storageClass }}
-  storageClassName: testo #{ .Values.persistence.storageClass | quote }}
+  storageClassName: standard #{ .Values.persistence.storageClass | quote }}
 #  {{- end }}
 
 
@@ -24,7 +24,7 @@ kind: PersistentVolume
 metadata:
   name: {{ include "teamcity-ha.fullname" . }}-pv
 spec:
-  storageClassName: testo
+  storageClassName: standard
   accessModes:
     - {{ .Values.persistence.accessMode }}
   capacity:
