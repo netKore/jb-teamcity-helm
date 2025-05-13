@@ -2,7 +2,7 @@ image:
   repository: jetbrains/teamcity-server
   tag: 2023.04
   pullPolicy: IfNotPresent
-
+agentNamespace: wombat-agents
 # Main сервер
 serverMain:
   replicaCount: 1
