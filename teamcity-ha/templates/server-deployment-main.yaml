@@ -52,13 +52,11 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data/teamcity_server/datadir
-
+            - name: dsl
+              mountPath: /data/teamcity_server/datadir/.teamcity
 #            - name: db-config
 #              mountPath: /data/teamcity_server/datadir/config/database.properties
 #              subPath: database.properties
-
-            - name: dsl
-              mountPath: /data/teamcity_server/datadir/.teamcity
 
       volumes:
 #        - name: db-config

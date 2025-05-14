@@ -18,7 +18,7 @@ serverMain:
     - name: TEAMCITY_SERVER_MEM_OPTS
       value: "-Xmx1g -Xms512m"
     - name: TEAMCITY_DB_URL
-      value: "jdbc:postgresql://10.0.2.15:5432/posgres"
+      value: "jdbc:postgresql://10.0.2.15:5432/postgres"
     - name: TEAMCITY_SERVER_DB_NAME
       value: "postgres"
     - name: TEAMCITY_DB_USER
