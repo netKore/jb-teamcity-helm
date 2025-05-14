@@ -23,10 +23,10 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
           env:
-            { { - range $env := .Values.serverMain.extraEnv } }
+            {{- range $env := .Values.serverMain.extraEnv }}
             - name: "{{ $env.name }}"
               value: "{{ $env.value }}"
-            { { - end } }
+            {{- end }}
           ports:
             - name: http
               containerPort: 8111
