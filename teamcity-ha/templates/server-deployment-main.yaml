@@ -18,6 +18,24 @@ spec:
         component: server-main
     spec:
       serviceAccountName: {{ include "teamcity-ha.fullname" . }}-server
+      initContainers:
+        - name: copy-config
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              mkdir -p /data/teamcity_server/datadir/config/projects/_Root && \
+              chmod -R 777  /data/teamcity_server/datadir/*
+          volumeMounts:
+            - name: data
+              mountPath: /data/teamcity_server/datadir
+            - name: cloud-profile
+              mountPath: /mnt/project-config.xml
+              subPath: project-config.xml
+            - name: internal-properties
+              mountPath: /mnt/internal.properties
+              subPath: internal.properties
       containers:
         - name: teamcity-server
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
