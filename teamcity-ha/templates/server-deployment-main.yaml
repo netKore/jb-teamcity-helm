@@ -22,6 +22,11 @@ spec:
         - name: teamcity-server
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
+          env:
+            { { - range $env := .Values.serverMain.extraEnv } }
+            - name: "{{ $env.name }}"
+              value: "{{ $env.value }}"
+            { { - end } }
           ports:
             - name: http
               containerPort: 8111
@@ -48,17 +53,17 @@ spec:
             - name: data
               mountPath: /data/teamcity_server/datadir
 
-            - name: db-config
-              mountPath: /data/teamcity_server/datadir/config/database.properties
-              subPath: database.properties
+#            - name: db-config
+#              mountPath: /data/teamcity_server/datadir/config/database.properties
+#              subPath: database.properties
 
             - name: dsl
               mountPath: /data/teamcity_server/datadir/.teamcity
 
       volumes:
-        - name: db-config
-          secret:
-            secretName: teamcity-database-secret
+#        - name: db-config
+#          secret:
+#            secretName: teamcity-database-secret
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "teamcity-ha.fullname" . }}-pvc

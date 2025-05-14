@@ -13,14 +13,27 @@ serverMain:
     limits:
       cpu: "2"
       memory: "2Gi"
+  # Доп. env:
+  extraEnv:
+    - name: TEAMCITY_SERVER_MEM_OPTS
+      value: "-Xmx1g -Xms512m"
+    - name: TEAMCITY_DB_URL
+      value: "jdbc:postgresql://10.0.2.15:5432/posgres"
+    - name: TEAMCITY_SERVER_DB_NAME
+      value: "postgres"
+    - name: TEAMCITY_DB_USER
+      value: "postgres"
+    - name: TEAMCITY_DB_PASSWORD
+      value: "qazwsx"
 
-database:
-  host: "10.0.2.15"
-  port: "5432"
-  name: "postgres"
-  user: "postgres"
-  password: "qazwsx"
-  ssl: "false"
+
+#database:
+#  host: "10.0.2.15"
+#  port: "5432"
+#  name: "postgres"
+#  user: "postgres"
+#  password: "qazwsx"
+#  ssl: "false"
 # Сервис
 service:
   type: ClusterIP
