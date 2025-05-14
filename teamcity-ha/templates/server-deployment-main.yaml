@@ -52,19 +52,20 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data/teamcity_server/datadir
-            - name: dsl
-              mountPath: /data/teamcity_server/datadir/.teamcity
-#            - name: db-config
-#              mountPath: /data/teamcity_server/datadir/config/database.properties
-#              subPath: database.properties
+            - name: cloud-profile
+              mountPath: /data/teamcity_server/datadir/projects/_Root/project-config.xml
+              subPath: project-config.xml
+            - name: internal-properties
+              mountPath: /data/teamcity_server/datadir/internal.properties
+              subPath: internal.properties
 
       volumes:
-#        - name: db-config
-#          secret:
-#            secretName: teamcity-database-secret
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "teamcity-ha.fullname" . }}-pvc
-        - name: dsl
+        - name: cloud-profile
           configMap:
-            name: teamcity-kotlin-dsl
+            name: teamcity-init-cloud-profile
+        - name: internal-properties
+          configMap:
+            name: teamcity-init-internal-properties
