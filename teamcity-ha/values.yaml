@@ -5,7 +5,7 @@ image:
 agentNamespace: wombat-agents
 # Main сервер
 serverMain:
-  replicaCount: 1
+  replicaCount: 3
   resources:
     requests:
       cpu: "500m"
@@ -13,37 +13,14 @@ serverMain:
     limits:
       cpu: "2"
       memory: "2Gi"
-  # Доп. env:
-  extraEnv:
-    - name: TEAMCITY_SERVER_MEM_OPTS
-      value: "-Xmx1g -Xms512m"
-    - name: TEAMCITY_SERVER_DB_HOST
-      value: "10.0.2.15"
-    - name: TEAMCITY_SERVER_DB_NAME
-      value: "postgres"
-    - name: TEAMCITY_SERVER_DB_USER
-      value: "postgres"
-    - name: TEAMCITY_SERVER_DB_PASSWORD
-      value: "qazwsx"
 
-#REDO
-serverSecondary:
-  enabled: true
-  replicaCount: 1
-  resources:
-    requests:
-      cpu: "500m"
-      memory: "1Gi"
-    limits:
-      cpu: "2"
-      memory: "2Gi"
-  extraEnv:
-    - name: TEAMCITY_SERVER_MEM_OPTS
-      value: "-Xmx1g -Xms512m"
-    - name: TEAMCITY_SERVER_OPTS
-      value: "-Dteamcity.server.role=secondary"
-    # При необходимости те же переменные для БД (или они читаются из config/datadir)
-
+database:
+  host: "10.0.2.15"
+  port: "5432"
+  name: "postgres"
+  user: "postgres"
+  password: "qazwsx"
+  ssl: "false"
 # Сервис
 service:
   type: ClusterIP
