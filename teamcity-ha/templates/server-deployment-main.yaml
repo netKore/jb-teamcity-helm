@@ -53,10 +53,10 @@ spec:
             - name: data
               mountPath: /data/teamcity_server/datadir
             - name: cloud-profile
-              mountPath: /data/teamcity_server/datadir/projects/test_repo/project-config.xml
+              mountPath: /data/teamcity_server/datadir/config/projects/_Root/project-config.xml
               subPath: project-config.xml
             - name: internal-properties
-              mountPath: /data/teamcity_server/datadir/internal.properties
+              mountPath: /data/teamcity_server/datadir/config/internal.properties
               subPath: internal.properties
 
       volumes:
