@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ .name }}
+  name: {{ .name }}-pv
   namespace: {{ $.Values.teamcity.namespace }}
   annotations:
     {{ .annotations | toYaml | indent 4 }}
