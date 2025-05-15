@@ -33,7 +33,7 @@ spec:
               mkdir -p /data/teamcity_server/datadir/config && \
               chown -R tcuser:tcuser  /data/teamcity_server/datadir/*
           volumeMounts:
-            - name: data
+            - name: datadir-config
               mountPath: /data/teamcity_server/datadir
       containers:
       - name: {{ $.Release.Name }}
