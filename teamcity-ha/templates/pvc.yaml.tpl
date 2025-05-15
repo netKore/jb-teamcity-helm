@@ -22,7 +22,7 @@ spec:
   accessModes:
     - {{ .accessModes | toJson }}
   capacity:
-    storage: {{ .Values.persistence.size }}
+    storage: {{ .size }}
   hostPath:
     path: /www/
 {{- end }}
