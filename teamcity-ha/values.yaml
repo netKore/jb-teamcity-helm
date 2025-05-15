@@ -94,7 +94,7 @@ persistence:
   enabled: true
   annotations:
     helm.sh/resource-policy: keep
-  storageClass: ""
+  storageClassName: standard
   accessModes:
     - ReadWriteMany
   size: 100Gi
