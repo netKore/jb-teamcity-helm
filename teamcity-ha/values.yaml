@@ -5,6 +5,7 @@ image:
   imagePullSecrets: []
 
 teamcity:
+  namespace: "default"
   resources:
     requests:
       cpu: 100m

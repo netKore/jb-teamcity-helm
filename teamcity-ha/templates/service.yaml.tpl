@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ $.Release.Name }}
+  namespace: {{ $.Values.teamcity.namespace }}
 spec:
   ports:
     - name: http
@@ -18,6 +19,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ $.Release.Name }}-headless
+  namespace: {{ $.Values.teamcity.namespace }}
 spec:
   type: ClusterIP
   clusterIP: None
@@ -37,6 +39,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ $.Release.Name }}-direct-{{ $index }}
+  namespace: {{ $.Values.teamcity.namespace }}
   annotations:
     {{- if and ($value.env) ($value.env.NODE_ID) }}
     node-id: "{{ $value.env.NODE_ID }}"
@@ -59,6 +62,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ $.Release.Name }}-direct-h{{ $index }}
+  namespace: {{ $.Values.teamcity.namespace }}
   annotations:
     {{- if and ($value.env) ($value.env.NODE_ID) }}
     node-id: "{{ $value.env.NODE_ID }}"

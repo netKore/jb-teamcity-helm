@@ -4,6 +4,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ $.Release.Name }}-datadir-config
+  namespace: {{ $.Values.teamcity.namespace }}
 data:
 {{ tpl ($.Values.configMap.datadirConfig | toYaml) $ | indent 4 }}
 {{ end }}
@@ -13,6 +14,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ $.Release.Name }}-startup-wrp
+  namespace: {{ $.Values.teamcity.namespace }}
 data:
   run-services-wrp.sh: |
     #!/bin/bash

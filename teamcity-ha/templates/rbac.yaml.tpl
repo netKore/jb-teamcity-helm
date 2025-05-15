@@ -4,6 +4,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: {{ $.Release.Name }}-agent-ctrl
+  namespace: {{ $.Values.teamcity.namespace }}
 rules:
 - apiGroups: [""]
   resources: ["namespaces"]
@@ -19,6 +20,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: {{ $.Release.Name }}-agent-ctrl
+  namespace: {{ $.Values.teamcity.namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role

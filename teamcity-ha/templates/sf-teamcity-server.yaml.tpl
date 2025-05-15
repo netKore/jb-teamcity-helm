@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{ $.Release.Name }}
+  namespace: {{ $.Values.teamcity.namespace }}
 spec:
   replicas: {{ len $.Values.teamcity.nodes }} #TODO
   serviceName: {{ $.Release.Name }}

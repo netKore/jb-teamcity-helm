@@ -4,6 +4,7 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: {{ $.Release.Name }}
+  namespace: {{ $.Values.teamcity.namespace }}
   labels:
     app: {{ $.Release.Name }}
 spec:
