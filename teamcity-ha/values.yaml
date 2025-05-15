@@ -92,8 +92,11 @@ pvc:
 
 persistence:
   enabled: true
+  annotations:
+    helm.sh/resource-policy: keep
   storageClass: ""
-  accessMode: ReadWriteMany
+  accessModes:
+    - ReadWriteMany
   size: 100Gi
 ## Create & Mount PVC for /opt/teamcity directories
 ## Defaults to emptyDir

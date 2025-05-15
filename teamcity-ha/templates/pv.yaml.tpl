@@ -4,8 +4,10 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: {{ .name }}-pv
+    annotations:
+{{ .annotations | toYaml | indent 4 }}
 spec:
-  storageClassName: standard
+  storageClassName: {{ .storageClassName }}
   accessModes:
     - {{ .accessModes | toJson }}
   capacity:
