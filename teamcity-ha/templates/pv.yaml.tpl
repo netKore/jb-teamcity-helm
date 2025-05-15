@@ -9,8 +9,7 @@ metadata:
     {{ .annotations | toYaml | indent 4 }}
 spec:
   storageClassName: {{ .storageClassName }}
-  accessModes:
-    - {{ .accessModes }}
+  accessModes: {{ .accessModes | toJson }}
   capacity:
     storage: {{ .size }}
   hostPath:
