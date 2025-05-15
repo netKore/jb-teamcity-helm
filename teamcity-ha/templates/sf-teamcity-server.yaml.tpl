@@ -31,7 +31,7 @@ spec:
             - -c
             - |
               mkdir -p /data/teamcity_server/datadir/config && \
-              chown -R tcuser:tcuser  /data/teamcity_server/datadir/*
+              chmod -R 777  /data/teamcity_server/datadir/*
           volumeMounts:
             - name: teamcity-server-data
               mountPath: /data/teamcity_server/datadir
