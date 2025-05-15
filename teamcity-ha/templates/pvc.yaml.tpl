@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .name }}-pvc
+  name: {{ .name }}
   namespace: {{ $.Values.teamcity.namespace }}
   annotations:
 {{ .annotations | toYaml | indent 4 }}
