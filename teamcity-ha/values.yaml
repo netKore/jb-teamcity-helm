@@ -97,7 +97,8 @@ persistence:
   annotations:
     helm.sh/resource-policy: keep
   storageClassName: standard
-  accessMode: ReadWriteMany
+  accessModes:
+    - ReadWriteMany
   size: 100Gi
 ## Create & Mount PVC for /opt/teamcity directories
 ## Defaults to emptyDir
