@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ .name }}-pv
+  name: {{ .name }}
   annotations:
     {{ .annotations | toYaml | indent 4 }}
 spec:
