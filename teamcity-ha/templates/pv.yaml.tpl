@@ -1,8 +1,9 @@
 {{- if $.Values.persistence.enabled }}
+{{- with $.Values.persistence }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ .name }}-pv
+  name: {{ .name }}
   namespace: {{ $.Values.teamcity.namespace }}
   annotations:
     {{ .annotations | toYaml | indent 4 }}
