@@ -9,6 +9,7 @@ metadata:
 {{ .annotations | toYaml | indent 4 }}
 spec:
   accessModes: {{ .accessModes | toJson }}
+  volumeName: {{ $.Values.persistence.name }}
   resources: {{ .resources | toJson }}
   storageClassName: {{ .storageClassName }}
 {{- end }}
