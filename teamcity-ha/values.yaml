@@ -139,7 +139,7 @@ database:
   password: "qazwsx" ## TODO
 
 configMap:
-  datadirConfig:
+  datadirConfig: #TODO MOVE TO SECRET
     database.properties: |
       connectionUrl=jdbc:mysql://{{ $.Values.database.host }}/{{ .Values.database.name}}?allowPublicKeyRetrieval=true&useSSL=false
       connectionProperties.user={{ $.Values.database.user }}

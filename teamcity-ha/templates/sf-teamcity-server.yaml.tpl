@@ -51,7 +51,7 @@ spec:
         {{ if $.Values.configMap.datadirConfig }}
         {{- range $key, $value := $.Values.configMap.datadirConfig }}
         - name: datadir-config
-          mountPath: /data/teamcity_server/datadir/config/{{ $key }}
+          mountPath: /debu/data/teamcity_server/datadir/config/{{ $key }}
           subPath: {{ $key }}
         {{- end }}
         {{- end }}
