@@ -141,7 +141,7 @@ database:
 configMap:
   datadirConfig: #TODO MOVE TO SECRET
     database.properties: |
-      connectionUrl=jdbc:mysql://{{ $.Values.database.host }}/{{ .Values.database.name}}?allowPublicKeyRetrieval=true&useSSL=false
+      connectionUrl=jdbc:postgresql://{{ $.Values.database.host }}/{{ .Values.database.name}}?allowPublicKeyRetrieval=true&useSSL=false
       connectionProperties.user={{ $.Values.database.user }}
       connectionProperties.password={{ $.Values.database.password }}
       maxConnections=50
