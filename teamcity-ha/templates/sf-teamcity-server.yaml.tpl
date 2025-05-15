@@ -35,12 +35,6 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data/teamcity_server/datadir
-            - name: cloud-profile
-              mountPath: /mnt/project-config.xml
-              subPath: project-config.xml
-            - name: internal-properties
-              mountPath: /mnt/internal.properties
-              subPath: internal.properties
       containers:
       - name: {{ $.Release.Name }}
         image: {{ $.Values.image.repository }}:{{ $.Values.image.tag }}
