@@ -89,6 +89,7 @@ pvc:
   resources:
     requests:
       storage: 4Gi
+
 persistence:
   enabled: true
   storageClass: ""

@@ -11,10 +11,8 @@ spec:
   resources: {{ .resources | toJson }}
   storageClassName: {{ .storageClassName }}
 {{- end }}
-
-
 ----
-
+{{- with $.Values.persistence }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
