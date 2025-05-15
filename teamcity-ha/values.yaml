@@ -93,7 +93,7 @@ pvc:
 
 persistence:
   enabled: true
-  na;e: teamcity-server-pv
+  name: teamcity-server-pv
   annotations:
     helm.sh/resource-policy: keep
   storageClassName: standard
