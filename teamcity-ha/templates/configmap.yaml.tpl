@@ -20,16 +20,6 @@ data:
     #!/bin/bash
     HOSTNAME=$(cat /etc/hostname)
 
-    initfile=${TEAMCITY_DATA_PATH}/system/dataDirectoryInitialized
-    if [ "$HOSTNAME" == "{{ $.Release.Name }}-0" ]; then
-      if [ ! -f $initfile ]; then
-        echo $initfile not found
-        echo Assume initial setup
-        mkdir ${TEAMCITY_DATA_PATH}/config
-        chmod 777 ${TEAMCITY_DATA_PATH}/config
-      fi
-    fi
-
     set -x
     case "$HOSTNAME" in
 {{- range $index, $value := .Values.teamcity.nodes }}
