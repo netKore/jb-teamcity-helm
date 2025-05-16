@@ -6,8 +6,6 @@ image:
 
 teamcity:
   namespace: "default"
-  vcs:
-    password: "hello"
   resources:
     requests:
       cpu: 100m
