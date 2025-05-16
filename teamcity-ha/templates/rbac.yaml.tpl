@@ -1,68 +1,46 @@
-{{- if $.Values.serviceAccount.enabled }} # TODO REVIEW RBAC
-{{- if $.Values.serviceAccount.agentRBAC.enabled }}
+{{- if .Values.serviceAccount.enabled }} # TODO REVIEW RBAC
+{{- if .Values.serviceAccount.agentRBAC.enabled }}
+
+# Role для доступа к pods в agentNamespace
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: {{ .Release.Name }}-agent-ctrl
-  namespace: {{ $.Values.teamcity.namespace }}
+  name: "{{ .Release.Name }}-agent-second-ns-ctrl"
+  namespace: "{{ .Values.agentNamespace }}"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: "{{ .Release.Name }}"
 rules:
   - apiGroups: [""]
     resources: ["pods"]
     verbs: ["create", "delete", "get", "list", "watch"]
   - apiGroups: [""]
     resources: ["podtemplates"]
-    verbs: ["get","list"]
-  - apiGroups: [""]
-    resources: ["namespaces"]
     verbs: ["get", "list"]
+
 ---
 
+# RoleBinding для agentNamespace
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: {{ .Release.Name }}-agent-ctrl
-  namespace: {{ $.Values.teamcity.namespace }}
+  name: "{{ .Release.Name }}-agent-second-ns-ctrl-binding"
+  namespace: "{{ .Values.agentNamespace }}"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: "{{ .Release.Name }}"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: {{ .Release.Name }}-agent-ctrl
+  name: "{{ .Release.Name }}-agent-second-ns-ctrl"
 subjects:
   - kind: ServiceAccount
-    name: {{ .Release.Name }}
----
-
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: {{ .Release.Name }}-agent-second-ns-ctrl
-  namespace: {{ .Values.agentNamespace | quote }}
-rules:
-  - apiGroups: [""]
-    resources: ["pods"]
-    verbs: ["create", "delete", "get", "list", "watch"]
-  - apiGroups: [""]
-    resources: ["podtemplates"]
-    verbs: ["get","list"]
-  - apiGroups: [""]
-    resources: ["namespaces"]
-    verbs: ["get", "list"]
----
-
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: {{ .Release.Name }}-agent-second-ns-ctrl
-  namespace: {{ .Values.agentNamespace | quote }}
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: {{ .Release.Name }}-agent-second-ns-ctrl
-subjects:
-  - kind: ServiceAccount
-    name: {{ .Release.Name }}
+    name: "{{ .Release.Name }}"
+    namespace: "{{ .Values.teamcity.namespace }}"
 
 ---
 
+# ClusterRole для доступа к namespaces (кластерный ресурс)
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -77,6 +55,7 @@ rules:
 
 ---
 
+# ClusterRoleBinding для namespaces
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -84,14 +63,14 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: "{{ .Release.Name }}"
-subjects:
-  - kind: ServiceAccount
-    name: "{{ .Release.Name }}"
-    namespace: "{{ .Values.teamcity.namespace }}"
 roleRef:
   kind: ClusterRole
   name: "{{ .Release.Name }}-agent-namespaces-ctrl"
   apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: "{{ .Release.Name }}"
+    namespace: "{{ .Values.teamcity.namespace }}"
 
 {{- end }}
 {{- end }}
