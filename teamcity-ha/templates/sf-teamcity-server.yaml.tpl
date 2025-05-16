@@ -47,6 +47,9 @@ spec:
             - name: vcs-init-config
               mountPath: /data/teamcity_server/vsc-init-config/vcs-init.xml
               subPath: vcs-init.xml
+            - mountPath: /data/teamcity_server/project-config.xml
+              name: teamcity-init-project
+              subPath: project-config.xml
 ##TODO IMPROVE IT
 
       containers:
@@ -92,9 +95,10 @@ spec:
 {{- end }}
         - mountPath: /home/tcuser
           name: home-tcuser
-        - mountPath: /data/teamcity_server/datadir/config/projects/TeamcityConfig/project-config.xml
-          name: teamcity-init-project
-          subPath: project-config.xml
+
+        - name: internal-properties
+          mountPath: /data/teamcity_server/datadir/config/internal.properties
+          subPath: internal.properties
       volumes:
 ##TODO
 
@@ -103,6 +107,13 @@ spec:
           defaultMode: 0644
           name: teamcity-init-project
       #TODO IMPROVE IT
+
+      - name: internal-properties
+        configMap:
+          name: teamcity-init-internal-properties
+          items:
+            - key:  project-config.xml
+              path: internal.properties
       - name: vcs-init-config
         configMap:
           defaultMode: 0644
