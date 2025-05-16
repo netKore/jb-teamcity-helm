@@ -52,7 +52,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: {{ $.Release.Name }}-agent-second-ns-ctrl
-  namespace:{{ .Values.agentNamespace | quote }}
+  namespace: {{ .Values.agentNamespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
