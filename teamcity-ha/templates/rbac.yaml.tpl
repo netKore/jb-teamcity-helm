@@ -6,15 +6,15 @@ metadata:
   name: {{ $.Release.Name }}-agent-ctrl
   namespace: {{ $.Values.teamcity.namespace }}
 rules:
-- apiGroups: [""]
-  resources: ["namespaces"]
-  verbs: ["list", "get"]
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["get", "create", "list", "delete"]
-- apiGroups: ["extensions", "apps"]
-  resources: ["deployments"]
-  verbs: ["list", "get"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["create", "delete", "get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["podtemplates"]
+    verbs: ["get","list"]
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -35,15 +35,15 @@ metadata:
   name: {{ $.Release.Name }}-agent-second-ns-ctrl
   namespace: {{ .Values.agentNamespace | quote }}
 rules:
-- apiGroups: [""]
-  resources: ["namespaces"]
-  verbs: ["list", "get"]
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["get", "create", "list", "delete"]
-- apiGroups: ["extensions", "apps"]
-  resources: ["deployments"]
-  verbs: ["list", "get"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["create", "delete", "get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["podtemplates"]
+    verbs: ["get","list"]
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
