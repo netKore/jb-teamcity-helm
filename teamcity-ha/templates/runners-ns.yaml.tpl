@@ -4,5 +4,5 @@ kind: Namespace
 metadata:
   name: {{ .Values.agentNamespace | quote }}
   labels:
-    app: {{ include "teamcity-ha.fullname" . }}
+    app: {{ $.Release.Name }}
 {{- end }}
