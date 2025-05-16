@@ -29,6 +29,23 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: {{ $.Release.Name }}
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ $.Release.Name }}-agent-second-ns-ctrl
+  namespace: {{ .Values.agentNamespace | quote }}
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["create", "delete", "get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["podtemplates"]
+    verbs: ["get","list"]
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get", "list"]
 
 {{- end }}
 {{- end }}
