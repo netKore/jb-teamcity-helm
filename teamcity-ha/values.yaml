@@ -74,7 +74,7 @@ serviceAccount:
   enabled: true
   annotations: {}
   agentRBAC:
-      enabled: false
+      enabled: true
 
 pdb:
   enabled: true
