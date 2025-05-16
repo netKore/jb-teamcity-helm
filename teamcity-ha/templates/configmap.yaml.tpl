@@ -19,7 +19,6 @@ data:
   run-services-wrp.sh: |
     #!/bin/bash
     HOSTNAME=$(cat /etc/hostname)
-
     set -x
     case "$HOSTNAME" in
 {{- range $index, $value := .Values.teamcity.nodes }}

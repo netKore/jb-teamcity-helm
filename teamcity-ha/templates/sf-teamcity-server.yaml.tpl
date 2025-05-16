@@ -25,16 +25,30 @@ spec:
 {{- end }}
       initContainers:
         - name: fix-perms
-          image: busybox
+          image: {{ $.Values.image.repository }}:{{ $.Values.image.tag }}
+          env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: teamcity-vcs-password
+                  key: password
           command:
             - sh
             - -c
-            - |
-              mkdir -p /data/teamcity_server/datadir/config && \
-              chmod -R 777  /data/teamcity_server/datadir/*
+            - /init-script.sh
+
           volumeMounts:
             - name: teamcity-server-data
               mountPath: /data/teamcity_server/datadir
+##TODO IMPROVE IT
+            - name: init-script
+              mountPath: /init-script.sh
+              subPath: init-script.sh
+            - name: vcs-init-config
+              mountPath: /data/teamcity_server/vsc-init-config/vcs-init.xml
+              subPath: vcs-init.xml
+##TODO IMPROVE IT
+
       containers:
       - name: {{ $.Release.Name }}
         image: {{ $.Values.image.repository }}:{{ $.Values.image.tag }}
@@ -78,7 +92,27 @@ spec:
 {{- end }}
         - mountPath: /home/tcuser
           name: home-tcuser
+        - mountPath: /data/teamcity_server/datadir/config/projects/TeamcityConfig/project-config.xml
+          name: teamcity-init-project
+          subPath: project-config.xml
       volumes:
+##TODO
+
+      - name: teamcity-init-project ##CAN BE MULTIPLE PROJECTS PROBABLY
+        configMap:
+          defaultMode: 0644
+          name: teamcity-init-project
+      #TODO IMPROVE IT
+      - name: vcs-init-config
+        configMap:
+          defaultMode: 0644
+          name: vcs-init-config
+      - name: init-script
+        configMap:
+          defaultMode: 0755
+          name: init-script
+          optional: false
+      #TODO IMPROVE IT
       {{ if $.Values.configMap.datadirConfig }}
       - name: datadir-config
         configMap:
