@@ -3,7 +3,43 @@ image:
   tag: latest
   pullPolicy: Always
   imagePullSecrets: []
+
 agentNamespace: wombat-agents
+
+proxy:
+  replicas: 2
+  image:
+    repository: haproxy
+    tag: "3.0"
+    pullPolicy: IfNotPresent
+    imagePullSecrets: []
+  resources:
+    requests:
+      cpu: "10m"
+      memory: "80Mi"
+  startupProbe:
+    httpGet:
+      path: /login.html
+      port: http
+      scheme: HTTP
+    failureThreshold: 120
+    periodSeconds: 5
+  livenessProbe: ~
+  ingress:
+    hosts:
+      - teamcity.example.com
+      - teamcity.isolated.example.com
+    ingressClassName: nginx
+    annotations: ~
+      # cert-manager.io/cluster-issuer: letsencrypt
+      # Nginx specific annotations
+      # nginx.ingress.kubernetes.io/client-body-buffer-size: 1M
+      # nginx.ingress.kubernetes.io/proxy-body-size: 400M
+      # nginx.ingress.kubernetes.io/proxy-connect-timeout: "1800"
+      # nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+      # nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
+
+
 teamcity:
   namespace: "default"
   resources:
