@@ -3,7 +3,7 @@ image:
   tag: latest
   pullPolicy: Always
   imagePullSecrets: []
-
+agentNamespace: wombat-agents
 teamcity:
   namespace: "default"
   resources:
