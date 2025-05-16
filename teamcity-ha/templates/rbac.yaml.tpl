@@ -16,6 +16,7 @@ rules:
     resources: ["namespaces"]
     verbs: ["get", "list"]
 ---
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -29,6 +30,7 @@ subjects:
   - kind: ServiceAccount
     name: {{ $.Release.Name }}
 ---
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -45,6 +47,7 @@ rules:
     resources: ["namespaces"]
     verbs: ["get", "list"]
 ---
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
