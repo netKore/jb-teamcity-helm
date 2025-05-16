@@ -29,21 +29,21 @@ spec:
           pathType: ImplementationSpecific
           backend:
             service:
-              name: {{ $.Release.Name }}
+              name: teamcity-ha #TODO {{ $.Release.Name }}
               port:
                 name: http
         - path: /js
           pathType: ImplementationSpecific
           backend:
             service:
-              name: {{ $.Release.Name }}
+              name: teamcity-ha #TODO {{ $.Release.Name }}
               port:
                 name: http
         - path: /presignedTokenAuth
           pathType: ImplementationSpecific
           backend:
             service:
-              name: {{ $.Release.Name }}
+              name: teamcity-ha #TODO {{ $.Release.Name }}
               port:
                 name: http
         - pathType: ImplementationSpecific
