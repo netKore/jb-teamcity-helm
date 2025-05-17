@@ -115,9 +115,9 @@ spec:
 # GH Certs
 {{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
 {{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert }}
-       - name: gh-key-secret
-         secret:
-            secretName: teamcity-vcs-certificate
+      - name: gh-key-secret
+        secret:
+           secretName: teamcity-vcs-certificate
 {{- end }}
 {{- end }}
 {{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
