@@ -11,7 +11,9 @@ rm -rf /root/www/.teamcity
 psql --host=$HOST --username=$USER --dbname=postgres -c "DROP SCHEMA public CASCADE;"
 psql --host=$HOST --username=$USER --dbname=postgres -c "CREATE SCHEMA public;"
 kind create cluster --config=ha_kind
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
 git pull
+sleep 120
 helm install teamcity-ha --generate-name --set teamcity.vcs.password="$1"
 
 unset PGPASSWORD
