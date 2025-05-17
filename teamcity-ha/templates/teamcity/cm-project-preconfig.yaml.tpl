@@ -10,13 +10,13 @@ data:
    vcs-init.xml: |
         <?xml version="1.0" encoding="UTF-8"?>
         <vcs-root  uuid="" type="jetbrains.git" >
-          <name>{{ .url }}}}</name>
+          <name>{{ .url }}</name>
           <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
           <param name="agentCleanPolicy" value="ON_BRANCH_CHANGE" />
-          <param name="branch" value="{{ .branch }}}}" />
+          <param name="branch" value="{{ .branch }}" />
           <param name="ignoreKnownHosts" value="true" />
           <param name="submoduleCheckout" value="CHECKOUT" />
-          <param name="url" value="{{ .url }}}}" />
+          <param name="url" value="{{ .url }}" />
           <param name="useAlternates" value="AUTO" />
           <param name="usernameStyle" value="USERID" />
 {{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.password }}
