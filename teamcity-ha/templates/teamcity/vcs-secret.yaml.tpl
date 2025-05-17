@@ -9,7 +9,9 @@ type: Opaque
 stringData:
   password: {{ $.Files.Get .tokenAuth.tokenPath }}
 {{- end }}
-----
+
+---
+
 {{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert }}
 apiVersion: v1
 kind: Secret
