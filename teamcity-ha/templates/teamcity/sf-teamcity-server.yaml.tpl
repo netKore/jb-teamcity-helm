@@ -39,7 +39,6 @@ spec:
             - sh
             - -c
             - /init-script.sh
-
           volumeMounts:
             - name: teamcity-server-data
               mountPath: /data/teamcity_server/datadir
@@ -53,7 +52,7 @@ spec:
             - mountPath: /data/teamcity_server/project-config.xml
               name: teamcity-init-project
               subPath: project-config.xml
-
+##TODO IMPROVE IT
 {{- end }}
       containers:
       - name: {{ $.Release.Name }}
@@ -105,7 +104,6 @@ spec:
 {{- end }}
         - mountPath: /home/tcuser
           name: home-tcuser
-
 #Allow auth via certs for GH
 {{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
 {{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert }}
@@ -122,7 +120,6 @@ spec:
              secretName: teamcity-vcs-certificate
 {{- end }}
 {{- end }}
-
 {{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
       - name: teamcity-init-project
         configMap:
@@ -139,7 +136,6 @@ spec:
           optional: false
 {{- end }}
 #TODO IMPROVE IT
-
       {{ if $.Values.configMap.datadirConfig }}
       - name: datadir-config
         configMap:
