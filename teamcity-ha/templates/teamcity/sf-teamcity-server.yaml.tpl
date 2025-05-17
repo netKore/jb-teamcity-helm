@@ -53,7 +53,7 @@ spec:
             - mountPath: /data/teamcity_server/project-config.xml
               name: teamcity-init-project
               subPath: project-config.xml
-##TODO IMPROVE IT
+
 {{- end }}
       containers:
       - name: {{ $.Release.Name }}
