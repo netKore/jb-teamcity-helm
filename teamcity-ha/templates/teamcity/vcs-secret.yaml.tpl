@@ -1,5 +1,6 @@
 {{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
 {{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.password }}
+---
 apiVersion: v1
 kind: Secret
 metadata:
@@ -12,7 +13,7 @@ stringData:
 
 ---
 
-{{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert }}
+{{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert1 }}
 apiVersion: v1
 kind: Secret
 metadata:
