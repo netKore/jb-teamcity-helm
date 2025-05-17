@@ -109,8 +109,8 @@ spec:
 #Allow auth via certs for GH
 {{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
 {{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert }}
-        - mountPath: /data
-          name: /data/teamcity_server/secrets
+        - mountPath: /data/teamcity_server/secrets
+          name: gh-key-secret
 {{- end }}
 {{- end }}
       volumes:
