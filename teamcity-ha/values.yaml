@@ -195,14 +195,14 @@ database:
 
 secrets:
   datadirConfig:
-    database.properties: |
-      connectionUrl=jdbc:postgresql://{{ $.Values.database.host }}/{{ .Values.database.name}}?allowPublicKeyRetrieval=true&useSSL=false
-      connectionProperties.user={{ $.Values.database.user }}
-      connectionProperties.password={{ $.Values.database.password }}
-      maxConnections=50
+    database.properties: | 
+        connectionUrl=jdbc:postgresql://{{ $.Values.database.host }}/{{ .Values.database.name}}?allowPublicKeyRetrieval=true&useSSL=false
+        connectionProperties.user={{ $.Values.database.user }}
+        connectionProperties.password={{ $.Values.database.password }}
+        maxConnections=50
 configMap:
   datadirConfig:
     internal.properties: | 
         teamcity.kubernetes.localServiceAccount.enable=true
     test.properties: |
-      testo=test
+        testo=test
