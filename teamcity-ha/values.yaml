@@ -192,6 +192,7 @@ database:
   name: "postgres"
   user: "postgres"
   password: "qazwsx" ## TODO
+## secrets.datadirConfig
 
 secrets:
   datadirConfig:

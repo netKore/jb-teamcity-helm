@@ -87,15 +87,11 @@ spec:
         {{- end }}
         {{- end }}
         {{ if $.Values.secrets.datadirConfig }}
-        {{- range $key, $value := $.Values.secrets.datadirConfig }}
+        {{- range $key1, $value := $.Values.secrets.datadirConfig }}
         - name: datadir-secret
-          mountPath: /data/teamcity_server/datadir/config/{{ $key }}
-          subPath: {{ $key }}
-          #test
+          mountPath: /data/teamcity_server/datadir/config/{{ $key1 }}
+          subPath: {{ $key2 }}
         {{- end }}
-        #test
-        #test
-        #test
         {{- end }}
         - mountPath: /run-services-wrp.sh
           name: startup-wrp
