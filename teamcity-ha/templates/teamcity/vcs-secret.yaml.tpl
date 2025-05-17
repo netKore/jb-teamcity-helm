@@ -13,7 +13,7 @@ stringData:
 
 ---
 
-{{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert1 }}
+{{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert }}
 apiVersion: v1
 kind: Secret
 metadata:
