@@ -108,9 +108,7 @@ teamcity:
           app: "{{ $.Release.Name }}"
   nodes:
   - ingress:
-      host:
-       - teamcity-main.example.com
-       - teamcity-secondary.example.com
+      host: teamcity-main.example.com
     ## @param temacity.nodes[<index>].env used to override env per node
     # env:
     #   ROOT_URL: "http://{{ $.Release.Name }}-{{ $index }}.{{ $.Release.Name }}-headless.{{ $.Release.Namespace}}:8111"
