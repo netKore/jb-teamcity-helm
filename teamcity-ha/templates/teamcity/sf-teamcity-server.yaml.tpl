@@ -90,7 +90,7 @@ spec:
         {{- range $key1, $value := $.Values.secrets.datadirConfig }}
         - name: datadir-secret
           mountPath: /data/teamcity_server/datadir/config/{{ $key1 }}
-          subPath: {{ $key2 }}
+          subPath: {{ $key1 }}
         {{- end }}
         {{- end }}
         - mountPath: /run-services-wrp.sh
