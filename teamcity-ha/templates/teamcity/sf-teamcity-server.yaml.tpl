@@ -91,7 +91,9 @@ spec:
         - name: datadir-secret
           mountPath: /data/teamcity_server/datadir/config/{{ $key }}
           subPath: {{ $key }}
+          #test
         {{- end }}
+        #test
         {{- end }}
         - mountPath: /run-services-wrp.sh
           name: startup-wrp
