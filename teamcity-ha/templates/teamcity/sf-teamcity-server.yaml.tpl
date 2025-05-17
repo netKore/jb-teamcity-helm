@@ -94,6 +94,7 @@ spec:
           #test
         {{- end }}
         #test
+        #test
         {{- end }}
         - mountPath: /run-services-wrp.sh
           name: startup-wrp
