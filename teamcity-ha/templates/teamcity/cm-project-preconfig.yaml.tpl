@@ -1,5 +1,5 @@
 {{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
-{{- with $.Values.teamcity.vcsRootConfiguration.configuration }}
+{{- with $.Values.teamcity.vcsRootConfiguration.ghAccess.configuration }}
 ---
 apiVersion: v1
 kind: ConfigMap

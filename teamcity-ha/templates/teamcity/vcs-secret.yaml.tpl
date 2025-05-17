@@ -1,5 +1,5 @@
 {{- if .Values.teamcity.vcsRootConfiguration.enabled }}
-{{- if .Values.teamcity.vcsRootConfiguration.auth.password }}
+{{- if .Values.teamcity.vcsRootConfiguration.ghAccess.auth.password }}
 apiVersion: v1
 kind: Secret
 metadata:
