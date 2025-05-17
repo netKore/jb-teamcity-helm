@@ -23,15 +23,19 @@ spec:
 {{- if $.Values.serviceAccount.enabled }}
       serviceAccountName: {{ $.Release.Name }}
 {{- end }}
+{{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
       initContainers:
         - name: fix-perms
           image: {{ $.Values.image.repository }}:{{ $.Values.image.tag }}
+#Allow auth via GH token for GH
+{{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.password }}
           env:
             - name: PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: teamcity-vcs-password
                   key: password
+{{- end }}
           command:
             - sh
             - -c
@@ -51,7 +55,7 @@ spec:
               name: teamcity-init-project
               subPath: project-config.xml
 ##TODO IMPROVE IT
-
+{{- end }}
       containers:
       - name: {{ $.Release.Name }}
         image: {{ $.Values.image.repository }}:{{ $.Values.image.tag }}
@@ -84,6 +88,13 @@ spec:
           subPath: {{ $key }}
         {{- end }}
         {{- end }}
+        {{ if $.Values.secrets.datadirConfig }}
+        {{- range $key, $value := $.Values.secrets.datadirConfig }}
+        - name: datadir-secret
+          mountPath: /data/teamcity_server/datadir/config/{{ $key }}
+          subPath: {{ $key }}
+        {{- end }}
+        {{- end }}
         - mountPath: /run-services-wrp.sh
           name: startup-wrp
           subPath: run-services-wrp.sh
@@ -96,24 +107,28 @@ spec:
         - mountPath: /home/tcuser
           name: home-tcuser
 
-        - name: internal-properties
-          mountPath: /data/teamcity_server/datadir/config/internal.properties
-          subPath: internal.properties
+#Allow auth via certs for GH
+{{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
+{{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert }}
+        - mountPath: /data
+          name: /data/teamcity_server/secrets
+{{- end }}
+{{- end }}
       volumes:
-##TODO
+# GH Certs
+{{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
+{{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert }}
+        - name: gh-key-secret
+          secret:
+             secretName: teamcity-vcs-certificate
+{{- end }}
+{{- end }}
 
-      - name: teamcity-init-project ##CAN BE MULTIPLE PROJECTS PROBABLY
+{{- if $.Values.teamcity.vcsRootConfiguration.enabled }}
+      - name: teamcity-init-project
         configMap:
           defaultMode: 0644
           name: teamcity-init-project
-      #TODO IMPROVE IT
-
-      - name: internal-properties
-        configMap:
-          name: teamcity-init-internal-properties
-          items:
-            - key:  project-config.xml
-              path: internal.properties
       - name: vcs-init-config
         configMap:
           defaultMode: 0644
@@ -123,24 +138,19 @@ spec:
           defaultMode: 0755
           name: init-script
           optional: false
-      #TODO IMPROVE IT
+{{- end }}
+#TODO IMPROVE IT
+
       {{ if $.Values.configMap.datadirConfig }}
       - name: datadir-config
         configMap:
           defaultMode: 0644
           name: {{ $.Release.Name }}-datadir-config
       {{ end }}
-      {{ if $.Values.configMap.optConf }}
-      - name: opt-conf
-        configMap:
-          defaultMode: 0644
-          name: {{ $.Release.Name }}-opt-conf
-      {{ end }}
-      {{ if $.Values.configMap.services }}
-      - name: services
-        configMap:
-          defaultMode: 0755
-          name: {{ $.Release.Name }}-services
+      {{ if $.Values.secrets.datadirConfig }}
+      - name: datadir-secret
+        secret:
+             secretName: {{ $.Release.Name }}-datadir-secret
       {{ end }}
       - name: startup-wrp
         configMap:

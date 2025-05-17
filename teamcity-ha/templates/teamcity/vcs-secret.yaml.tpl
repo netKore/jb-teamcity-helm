@@ -1,4 +1,5 @@
-{{- if .Values.teamcity.vcs.password }}
+{{- if .Values.teamcity.vcsRootConfiguration.enabled }}
+{{- if .Values.teamcity.vcsRootConfiguration.auth.password }}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -6,5 +7,17 @@ metadata:
   namespace: {{ .Values.teamcity.namespace }}
 type: Opaque
 stringData:
-  password: {{ .Values.teamcity.vcs.password | quote }}
+  password: {{ $.Files.Get .tokenAuth.tokenPath }}
+{{- end }}
+----
+{{- if .Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: teamcity-vcs-certificate
+  namespace: {{ .Values.teamcity.namespace }}
+type: Opaque ##TODO RETHINK kubernetes.io/tls
+data:
+  password: {{ $.Files.Get .certAuth.certPath | b64enc }}
+{{- end }}
 {{- end }}

@@ -11,12 +11,15 @@ data:
     initfile=${TEAMCITY_DATA_PATH}/system/dataDirectoryInitialized
     if [ "$HOSTNAME" == "{{ $.Release.Name }}-0" ]; then
       if [ ! -f $initfile ]; then
-         ENCRYPTED=$(java -jar /opt/teamcity/bin/encryption-cli-tool.jar "$PASSWORD" | tail -n 1)
          mkdir -p /data/teamcity_server/datadir/config/projects/_Root/vcsRoots
-         sed "s|X_STUB_X|$ENCRYPTED|g"  /data/teamcity_server/vsc-init-config/vcs-init.xml > /data/teamcity_server/datadir/config/projects/_Root/vcsRoots/HttpsGithubComNetKoreTeamcityConfigGit.xml
+{{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.password }}
+         ENCRYPTED=$(java -jar /opt/teamcity/bin/encryption-cli-tool.jar "$PASSWORD" | tail -n 1)
+         sed "s|X_STUB_X|$ENCRYPTED|g"  /data/teamcity_server/vsc-init-config/vcs-init.xml > /data/teamcity_server/vsc-init-config/vcs-init.xml
+{{- end }}
+         cp /data/teamcity_server/vsc-init-config/vcs-init.xml /data/teamcity_server/datadir/config/projects/_Root/vcsRoots/VCSDefaultConfigGit.xml
          cp /data/teamcity_server/project-config.xml /data/teamcity_server/datadir/config/projects/_Root/project-config.xml
       fi
     fi
-#TODO 777          chmod -R 777  /data/teamcity_server/datadir/*
+
 #TODO PROJECT NAME TEMPLATE#
 

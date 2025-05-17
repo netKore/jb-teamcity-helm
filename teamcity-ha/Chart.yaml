@@ -3,4 +3,4 @@ name: teamcity-ha
 description: "Helm chart for HA TeamCity inside Kubernetes, with dynamic Kubernetes Cloud agents"
 type: application
 version: 0.1.0
-appVersion: "2023.04"
+appVersion: "2025.03"
