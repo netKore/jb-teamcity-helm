@@ -1,7 +1,7 @@
 {{ if $.Values.secrets.datadirConfig }}
 ---
 apiVersion: v1
-kind: secret
+kind: Secret
 metadata:
   name: {{ $.Release.Name }}-datadir-secret
   namespace: {{ $.Values.teamcity.namespace }}
