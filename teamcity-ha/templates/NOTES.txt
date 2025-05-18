@@ -8,7 +8,7 @@
 
 ### 1. Initial Configuration
 - Your TeamCity server(s) will be ready shortly.
-- Access initial setup via HAProxy at: {{ $.Values.nodes.ingress.host }}
+- Access initial setup via HAProxy at: #TODO ADD IT
 
 ### 2. HA Configuration
 - After initial setup, manage the HA configuration at: {{ $.Values.proxy.ingress.hosts }}
