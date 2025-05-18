@@ -219,6 +219,6 @@ configMap:
           <artifacts maxArtifactSize="314572800" artifact-paths="system/artifacts" maxArtifactsNumber="1000" />
           <domain-isolation protection-enabled="true" />
           <git nativeOperationsEnabled="true" />
-          <server rootURL="http://{{ $.Values.nodes.ingress.host }}:80">
+          <server rootURL="http://teamcity.local.dev:80">
           </server>
         </server>
