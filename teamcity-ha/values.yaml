@@ -219,6 +219,6 @@ configMap:
           <artifacts maxArtifactSize="314572800" artifact-paths="system/artifacts" maxArtifactsNumber="1000" />
           <domain-isolation protection-enabled="true" />
           <git nativeOperationsEnabled="true" />
-          <server rootURL="http://some.host.com:8111">
+          <server rootURL="http://{{ $.Values.nodes.ingress.host }}:80">
           </server>
         </server>
