@@ -43,7 +43,7 @@ metadata:
 data:
   project-config.xml: |
     <?xml version="1.0" encoding="UTF-8"?>
-    <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid=" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2025.3/project-config.xsd">
+    <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2025.3/project-config.xsd">
       <name>&lt;Root project&gt;</name>
       <description>Contains all other projects</description>
       <project-extensions>
@@ -60,6 +60,11 @@ data:
           </parameters>
         </extension>
       </project-extensions>
+      <cleanup>
+        <options>
+          <option name="preventDependenciesArtifactsFromCleanup" value="false" />
+        </options>
+      </cleanup>
     </project>
 
 {{- end }}
