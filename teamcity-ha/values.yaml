@@ -54,9 +54,10 @@ teamcity:
         #If https -> only annonumous supported in this configrutaion
         #If ssh -> private certificate path required
         certAuth:
-          certPath: ../certs/gh.key
+          #cert encoded base64
+          cert: ......
         tokenAuth:
-          tokenPath: certs/token.key
+          token: ~
         branch: "main"
         username: "netKore"
 

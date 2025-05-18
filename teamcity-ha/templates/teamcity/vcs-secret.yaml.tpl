@@ -8,7 +8,7 @@ metadata:
   namespace: {{ $.Values.teamcity.namespace }}
 type: Opaque
 stringData:
-  password: {{ $.Files.Get .tokenAuth.tokenPath }}
+  password: {{ $.Values.teamcity.vcsRootConfiguration.ghAccess.configuration.tokenAuth.token }}
 {{- end }}
 
 ---
@@ -19,8 +19,8 @@ kind: Secret
 metadata:
   name: teamcity-vcs-certificate
   namespace: {{ $.Values.teamcity.namespace }}
-type: Opaque ##TODO RETHINK kubernetes.io/tls
+type: Opaque
 data:
-  gh.key: {{ $.Files.Get $.Values.teamcity.vcsRootConfiguration.ghAccess.configuration.certAuth.certPath | b64enc }}
+  gh.key: {{ $.Values.teamcity.vcsRootConfiguration.ghAccess.configuration.certAuth.cert }}
 {{- end }}
 {{- end }}
