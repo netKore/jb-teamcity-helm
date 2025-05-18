@@ -39,6 +39,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: teamcity-init-project
+  namespace: {{ $.Values.teamcity.namespace }}
 data:
   project-config.xml: |
     <?xml version="1.0" encoding="UTF-8"?>

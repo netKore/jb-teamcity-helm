@@ -4,6 +4,7 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: {{ $.Release.Name }}-proxy
+  namespace: {{ $.Values.teamcity.namespace }}
   labels:
     app: {{ $.Release.Name }}-proxy
     component: proxy

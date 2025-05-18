@@ -1,7 +1,6 @@
 {{- if .Values.serviceAccount.enabled }}
 {{- if .Values.serviceAccount.agentRBAC.enabled }}
 
-# Role для доступа к pods в agentNamespace
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -20,7 +19,6 @@ rules:
 
 ---
 
-# RoleBinding для agentNamespace
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -40,7 +38,6 @@ subjects:
 
 ---
 
-# ClusterRole для доступа к namespaces (кластерный ресурс)
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -55,7 +52,6 @@ rules:
 
 ---
 
-# ClusterRoleBinding для namespaces
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:

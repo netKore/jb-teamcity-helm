@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: teamcity-ha #TODO {{ $.Release.Name }}
+  name: {{ $.Release.Name }}
   namespace: {{ $.Values.teamcity.namespace }}
 spec:
   ports:

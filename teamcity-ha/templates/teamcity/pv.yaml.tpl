@@ -13,6 +13,6 @@ spec:
   capacity:
     storage: {{ .size }}
   hostPath:
-    path: /www/
+    path: {{ .hostPath }}
 {{- end }}
 {{- end }}

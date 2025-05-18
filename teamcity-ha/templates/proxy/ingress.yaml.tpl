@@ -3,6 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $.Release.Name }}-proxy
+  namespace: {{ $.Values.teamcity.namespace }}
   annotations:
 {{ $.Values.proxy.ingress.annotations | toYaml | indent 4 }}
 spec:
@@ -29,21 +30,21 @@ spec:
           pathType: ImplementationSpecific
           backend:
             service:
-              name: teamcity-ha #TODO {{ $.Release.Name }}
+              name: {{ $.Release.Name }}
               port:
                 name: http
         - path: /js
           pathType: ImplementationSpecific
           backend:
             service:
-              name: teamcity-ha #TODO {{ $.Release.Name }}
+              name: {{ $.Release.Name }}
               port:
                 name: http
         - path: /presignedTokenAuth
           pathType: ImplementationSpecific
           backend:
             service:
-              name: teamcity-ha #TODO {{ $.Release.Name }}
+              name: {{ $.Release.Name }}
               port:
                 name: http
         - pathType: ImplementationSpecific

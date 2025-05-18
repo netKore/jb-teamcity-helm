@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ $.Release.Name }}-proxy
+  namespace: {{ $.Values.teamcity.namespace }}
 spec:
   replicas: {{ $.Values.proxy.replicas }}
   selector:

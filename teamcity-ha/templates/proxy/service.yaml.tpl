@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ $.Release.Name }}-proxy
+  namespace: {{ $.Values.teamcity.namespace }}
 spec:
   ports:
     - name: http

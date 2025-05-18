@@ -3,6 +3,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: {{ $.Release.Name }}-haproxy-cfg
+  namespace: {{ $.Values.teamcity.namespace }}
 data:
   haproxy.cfg: |
     defaults
