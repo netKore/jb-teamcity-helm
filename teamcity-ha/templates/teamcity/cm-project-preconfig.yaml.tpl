@@ -27,7 +27,6 @@ data:
 {{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.cert }}
           <param name="authMethod" value="PRIVATE_KEY_FILE" />
           <param name="privateKeyPath" value="/data/teamcity_server/secrets/gh.key" />
-          <param name="username" value="{{ .username }}" />
 {{- end }}
 {{- if $.Values.teamcity.vcsRootConfiguration.ghAccess.auth.password }}
           <param name="authMethod" value="ANONYMOUS" />

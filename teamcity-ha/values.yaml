@@ -55,7 +55,7 @@ teamcity:
         #If ssh -> private certificate path required
         certAuth:
           #cert encoded base64
-          cert: ......
+          cert: ~
         tokenAuth:
           token: ~
         branch: "main"
