@@ -9,7 +9,7 @@ metadata:
 data:
    vcs-init.xml: |
         <?xml version="1.0" encoding="UTF-8"?>
-        <vcs-root  uuid="" type="jetbrains.git" >
+        <vcs-root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="" type="jetbrains.git" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2025.3/project-config.xsd">
           <name>{{ .url }}</name>
           <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
           <param name="agentCleanPolicy" value="ON_BRANCH_CHANGE" />
@@ -43,7 +43,7 @@ metadata:
 data:
   project-config.xml: |
     <?xml version="1.0" encoding="UTF-8"?>
-    <project parent-id="" uuid="" >
+    <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid=" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2025.3/project-config.xsd">
       <name>&lt;Root project&gt;</name>
       <description>Contains all other projects</description>
       <project-extensions>
