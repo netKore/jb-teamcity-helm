@@ -4,7 +4,7 @@ metadata:
   name: {{ $.Release.Name }}
   namespace: {{ $.Values.teamcity.namespace }}
 spec:
-  replicas: {{ len $.Values.teamcity.nodes }} #TODO
+  replicas: {{ len $.Values.teamcity.nodes }}
   serviceName: {{ $.Release.Name }}
   podManagementPolicy: OrderedReady
   updateStrategy:
@@ -42,7 +42,6 @@ spec:
           volumeMounts:
             - name: teamcity-server-data
               mountPath: /data/teamcity_server/datadir
-##TODO IMPROVE IT
             - name: init-script
               mountPath: /init-script.sh
               subPath: init-script.sh
@@ -52,7 +51,6 @@ spec:
             - mountPath: /data/teamcity_server/project-config.xml
               name: teamcity-init-project
               subPath: project-config.xml
-##TODO IMPROVE IT
 {{- end }}
       containers:
       - name: {{ $.Release.Name }}
@@ -65,7 +63,7 @@ spec:
         {{- range $key, $value := . }}
         - name: {{ $key }}
         {{- if kindIs "string" $value }}
-        {{- $v := dict "value" (tpl $value $) }} #REVIEW TODO
+        {{- $v := dict "value" (tpl $value $) }}
         {{- toYaml $v | nindent 10 }}
         {{- else }}
           {{- tpl (toYaml $value) $ | nindent 10 }}
@@ -135,7 +133,6 @@ spec:
           name: init-script
           optional: false
 {{- end }}
-#TODO IMPROVE IT
       {{ if $.Values.configMap.datadirConfig }}
       - name: datadir-config
         configMap:

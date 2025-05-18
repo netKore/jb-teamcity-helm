@@ -63,7 +63,7 @@ teamcity:
 
   resources:
     requests:
-      cpu: 100m
+      cpu: 500m
       memory: 2048Mi
   env:
 
@@ -192,7 +192,7 @@ database:
   host: "10.0.2.15"
   name: "postgres"
   user: "postgres"
-  password: "qazwsx" ## TODO
+  password: "qazwsx"
 ## secrets.datadirConfig
 
 secrets:
@@ -206,5 +206,18 @@ configMap:
   datadirConfig:
     internal.properties: | 
         teamcity.kubernetes.localServiceAccount.enable=true
-    test.properties: |
-        testo=test
+    main-config.xml: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE server SYSTEM "main-config.dtd">
+        
+        <server uuid="">
+          <version number="1021" />
+          <db-compact enabled="true">
+            <scheduler cron="0 0 3 * * ?" />
+          </db-compact>
+          <artifacts maxArtifactSize="314572800" artifact-paths="system/artifacts" maxArtifactsNumber="1000" />
+          <domain-isolation protection-enabled="true" />
+          <git nativeOperationsEnabled="true" />
+          <server rootURL="http://some.host.com:port">
+          </server>
+        </server>

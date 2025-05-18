@@ -1,4 +1,3 @@
-#TODO
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -21,5 +20,4 @@ data:
       fi
     fi
 
-#TODO PROJECT NAME TEMPLATE#
 

@@ -1,4 +1,4 @@
-{{- if .Values.serviceAccount.enabled }} # TODO REVIEW RBAC
+{{- if .Values.serviceAccount.enabled }}
 {{- if .Values.serviceAccount.agentRBAC.enabled }}
 
 # Role для доступа к pods в agentNamespace
