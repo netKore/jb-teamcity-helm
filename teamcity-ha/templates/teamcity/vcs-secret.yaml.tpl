@@ -21,6 +21,6 @@ metadata:
   namespace: {{ $.Values.teamcity.namespace }}
 type: Opaque ##TODO RETHINK kubernetes.io/tls
 data:
-  password: {{ $.Files.Get $.Values.teamcity.vcsRootConfiguration.ghAccess.configuration.certAuth.certPath | b64enc }}
+  gh.key: {{ $.Files.Get $.Values.teamcity.vcsRootConfiguration.ghAccess.configuration.certAuth.certPath | b64enc }}
 {{- end }}
 {{- end }}

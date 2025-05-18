@@ -54,7 +54,7 @@ teamcity:
         #If https -> only annonumous supported in this configrutaion
         #If ssh -> private certificate path required
         certAuth:
-          certPath: certs/gh.key
+          certPath: ../certs/gh.key
         tokenAuth:
           tokenPath: certs/token.key
         branch: "main"
