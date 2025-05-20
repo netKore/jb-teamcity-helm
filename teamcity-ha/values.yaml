@@ -41,7 +41,7 @@ teamcity: #TeamCity configuration
         ghAnnonumous: true #Annonumous
         password: false # Via PAT token(not recommended) TODO test it and fix documentation
       configuration:
-        url: git@github.com:netKore/teamcity-config.git
+        url: https://github.com/netKore/jb-teamcity-helm.git #git@github.com:netKore/teamcity-config.git
         #If https -> only annonumous supported in this configrutaion #TODO test it
         #If ssh -> private certificate path required
         certAuth:
