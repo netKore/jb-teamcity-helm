@@ -37,8 +37,8 @@ teamcity: #TeamCity configuration
     enabled: true #If you want to have preconfigured Root project
     ghAccess:
       auth: #Type of access
-        cert: true #Via SSH key
-        ghAnnonumous: false #Annonumous
+        cert: false #Via SSH key
+        ghAnnonumous: true #Annonumous
         password: false # Via PAT token(not recommended) TODO test it and fix documentation
       configuration:
         url: git@github.com:netKore/teamcity-config.git
