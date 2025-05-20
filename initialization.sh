@@ -86,7 +86,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Create KIND cluster
-kind create cluster --config="$CONFIG_FILE"
+sudo kind create cluster --config="$CONFIG_FILE"
 
 # Deploy ingress controller
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
