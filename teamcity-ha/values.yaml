@@ -38,11 +38,11 @@ teamcity: #TeamCity configuration
     ghAccess:
       auth: #Type of access
         cert: false #Via SSH key
-        ghAnnonumous: true #Annonumous
-        password: false # Via PAT token(not recommended)
+        ghAnnonumous: false #Annonumous
+        password: true # Via PAT token(not recommended)
       configuration:
         url: https://github.com/netKore/teamcity-config.git #git@github.com:netKore/teamcity-config.git
-        #If https -> only annonumous supported in this configrutaion
+        #If https -> only annonumous or PAT supported in this configrutaion
         #If ssh -> private certificate path required
         certAuth:
           #cert encoded base64

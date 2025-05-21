@@ -14,6 +14,15 @@ Ensure the following software is installed on your server (Ubuntu or similar Lin
 - **PostgreSQL** database for TeamCity data
 - **Cloud Provider KIND** Cloud Provider KIND runs as a standalone binary in your host and connects to your KIND cluster and provisions new Load Balancer containers for your Services
 
+## Short guide
+
+In this repo you can next files:
+- **prepare_os.sh**
+- **initialization.sh**
+- **cleanup.sh**
+- **ha_kind**
+- **teamcity-ha**
+
 ## Installation Steps(from scratch) for infrastructure
 
 Execute all commands with `sudo` or as root user. Only for PoC and testing purposes.
