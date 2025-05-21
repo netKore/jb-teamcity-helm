@@ -1,8 +1,9 @@
 #!/bin/bash
 #Script for testing purposes only
-HOST=""
-USER=""
-PASSWORD=""
+HOST="10.0.2.15"
+USER="postgres"
+PASSWORD="qazwsx"
+
 
 export PGPASSWORD=$PASSWORD
 kind delete cluster 

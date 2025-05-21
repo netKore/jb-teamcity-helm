@@ -4,17 +4,21 @@
 
 ---
 
-## ✅ Next Steps:
+## Next Steps:
 
-### 1. Initial Configuration
+### 1. Run cloud-provider-kind
+
+ - Execute command and leave it active: 'cloud-provider-kind'
+
+### 2. Initial Configuration
 - Your TeamCity server(s) will be ready shortly.
 - Access initial setup via direct link(HA will be available after Initial configuration)
 - Go through initial configuration
 
-### 2. HA Configuration
+### 3. HA Configuration
 - After initial setup, manage the HA configuration at: {{ $.Values.proxy.ingress.hosts }}
 
-### 3. Enable Preconfigured VCS Sync
+### 4. Enable Preconfigured VCS Sync
 - Navigate in the TeamCity web UI:
   ```
   Administration → Root Project → Versioned Settings
@@ -24,7 +28,7 @@
   - Temporarily disable sync and re-enable it.
 - Confirm and apply your settings.
 
-### 4. Finalize
+### 5. Finalize
 - Your preconfigured project settings will now sync and upload from VCS automatically.
 
 *********************************************************************************
