@@ -97,7 +97,7 @@ install_cloud_provider_kind
 install_helm
 install_postgresql
 install_kubectl
-create_tmp_www
+create_root_www
 
 echo "============================================================"
 echo " Setup complete."
