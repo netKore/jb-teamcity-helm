@@ -14,18 +14,58 @@ Ensure the following software is installed on your server (Ubuntu or similar Lin
 - **PostgreSQL** database for TeamCity data
 - **Cloud Provider KIND** Cloud Provider KIND runs as a standalone binary in your host and connects to your KIND cluster and provisions new Load Balancer containers for your Services
 
-## Short guide
+# Short Guide
 
-In this repo you can next files:
-- **prepare_os.sh**
-- **initialization.sh**
-- **cleanup.sh**
-- **ha_kind**
-- **teamcity-ha**
+This repository contains the following files:
 
-## Installation Steps(from scratch) for infrastructure
+- **prepare_os.sh** – Initial script to install all required software.  
+- **initialization.sh** – Script to deploy Kind and TeamCity.  
+- **cleanup.sh** – Script to remove all resources created by TeamCity or the `initialization.sh` script (used for clean installation).  
+- **ha_kind** – Kind cluster configuration.  
+- **teamcity-ha** – Helm chart for TeamCity in HA mode.  
 
-Execute all commands with `sudo` or as root user. Only for PoC and testing purposes.
+> ⚠️ **Warning:** These scripts are **not production-ready**. Please do **not** use or modify them for production environments.  
+> Root permissions are required, and some scripts contain **hardcoded passwords** for demonstration purposes to simplify the PoC setup.
+
+---
+
+## Installation Using Scripts
+
+1. Prepare your environment by running:
+   ```bash
+   ./prepare_os.sh
+   ```
+2. Modify configuration  
+   The most important parameters:
+
+   - **Database configuration:**
+     ```yaml
+     database:
+       host: "10.0.2.15"       # Do not use 'localhost' – this IP will be used inside the Pod.
+       name: "postgres"        # If you want to change this, also update the PostgreSQL setup in prepare_os.sh.
+       user: "postgres"        # If you want to change this, also update the PostgreSQL setup in prepare_os.sh.
+       password: "qazwsx"      # Default password – only for PoC purposes.
+     ```
+
+   - In `ha_kind`, set the `apiServerAddress` – this is the IP address for the API server.
+   - 
+3. Create a Kind cluster and deploy the Helm chart:
+   ```bash
+   ./initialization.sh [--cert <path_to_cert>] | [--token <path_to_token>] | [--anonymous] | [--help]
+   ```
+
+4. Wait until TeamCity pods are fully deployed.
+
+After that, proceed to the “11. Verify Pods Are Running” section to continue with the next steps.
+
+If the scripts fail for any reason, follow the manual installation steps below.
+
+---
+
+## Manual Installation Steps (from scratch)
+
+Run all commands with `sudo` or as the root user.  
+These steps are **only for PoC and testing purposes**.
 
 ### 1. Install Docker
 
@@ -167,7 +207,7 @@ Open `http://localhost:8080` in a browser.
       
    etc/hosts files example: `172.18.0.6  teamcity.example.com teamcity.isolated.example.com teamcity-main.example.com`
 
-*WARNING* This is important for initialization steps to connect to fist StatefullSet: for example `teamcity-ha-0`
+*WARNING* This is important for initialization steps to connect to first StatefullSet: for example `teamcity-ha-0`
 *INFO* HA url will be accessible only after initialization
 
 ## Installation customization for TC
