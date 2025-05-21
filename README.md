@@ -140,9 +140,9 @@ git clone https://github.com/netKore/jb-teamcity-helm.git
 ### 9. Prepare Data Directory
 
 ```bash
-mkdir -p /tmp/www
-chown $USER:$USER /tmp/www
-chmod 777 /tmp/www ##To make PoC easier
+mkdir -p /root/www
+chown $USER:$USER /root/www
+chmod 777 /root/www ##To make PoC easier
 ```
 
 ### 10. Execute script 

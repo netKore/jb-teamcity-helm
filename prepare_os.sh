@@ -12,7 +12,7 @@ PG_VERSION=16
 
 # ========== FUNCTIONS ==========
 
-echo ${PG_PASSWORD}
+echo "This script was created for PoC purposes only and is not suitable for use in a production environment."
 
 install_docker() {
   echo "Installing Docker..."
@@ -76,12 +76,16 @@ install_postgresql() {
   sudo -u postgres psql -c "ALTER USER postgres PASSWORD '${PG_PASSWORD}';"
 }
 
-create_tmp_www() {
-  echo "Creating /tmp/www directory..."
-  mkdir -p /tmp/www
-  chmod 777 /tmp/www
+create_root_www() {
+  echo "Creating /root/www directory... - to store datadir"
+  mkdir -p /root/www
+  chmod 777 /root/www
 }
 
+install_kubectl() {
+  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  sudo install kubectl /usr/local/bin
+}
 # ========== EXECUTION ==========
 
 echo "Starting TeamCity HA PoC environment setup..."
@@ -92,13 +96,15 @@ install_kind
 install_cloud_provider_kind
 install_helm
 install_postgresql
+install_kubectl
 create_tmp_www
 
 echo "============================================================"
 echo " Setup complete."
-echo " Created directory: /tmp/www"
+echo " Created directory: /root/www"
 echo " PostgreSQL password for user 'postgres': ${PG_PASSWORD}"
 echo " Repository cloned to: jb-teamcity-helm/"
 echo " Proceed with Helm chart deployment as described in the repo."
 echo "============================================================"
-
+echo "This script was created for PoC purposes only and is not suitable for use in a production environment."
+echo "============================================================"

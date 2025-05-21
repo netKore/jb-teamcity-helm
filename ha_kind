@@ -6,18 +6,18 @@ networking:
 nodes:
 - role: control-plane
   extraMounts:
-    - hostPath: /tmp/www
+    - hostPath: /root/www
       containerPath: /www
 # the three workers
 - role: worker
   extraMounts:
-    - hostPath: /tmp/www
+    - hostPath: /root/www
       containerPath: /www
 - role: worker
   extraMounts:
-    - hostPath: /tmp/www
+    - hostPath: /root/www
       containerPath: /www
 - role: worker
   extraMounts:
-    - hostPath: /tmp/www
+    - hostPath: /root/www
       containerPath: /www
