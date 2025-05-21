@@ -1,8 +1,8 @@
 #!/bin/bash
-
-HOST="10.0.2.15"
-USER="postgres"
-PASSWORD="qazwsx"
+#Tor testing purposes only
+HOST=""
+USER=""
+PASSWORD=""
 
 export PGPASSWORD=$PASSWORD
 kind delete cluster 

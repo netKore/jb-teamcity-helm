@@ -8,7 +8,7 @@
 
 ### 1. Initial Configuration
 - Your TeamCity server(s) will be ready shortly.
-- Access initial setup via HAProxy at: #TODO ADD IT
+- Access initial setup via direct link(HA will be available after Initial configuration)
 - Go through initial configuration
 
 ### 2. HA Configuration
